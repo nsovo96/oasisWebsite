@@ -1,0 +1,41 @@
+﻿@model DataAccessLayer.Models.Notifications
+
+@{
+    ViewBag.Title = "ViewNotification";
+    Layout = "~/Views/Shared/" + @Session["addtoLayout"];
+}
+
+<h2>ViewNotification</h2>
+<a class="btn btn-block bg-gradient-primary" href="@Url.Action("NewTask","Tasks")">Start a Task</a>
+
+<div>
+    <h4>Notifications</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RecieverRole)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecieverRole)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notification)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notification)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.datesent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datesent)
+        </dd>
+
+
+    </dl>
+</div>

@@ -1,0 +1,242 @@
+﻿@model DataAccessLayer.Models.Tasks
+
+@{
+    ViewBag.Title = "NewTask";
+    Layout = "~/Views/Shared/" + @Session["addtoLayout"];
+}
+
+<h2>Select a task you want to work</h2>
+
+@using DataAccessLayer.Models;
+@using BusinessLogic;
+
+@{
+    List<Users> userManager = new List<Users>();
+
+
+    UserAccounts AccountList = new UserAccounts("Select");
+
+    userManager = AccountList.Login();
+
+}
+
+@{
+
+    foreach (var user in userManager)
+    {
+        
+        if (user.id == Convert.ToInt32(Session["userId"]))
+        {
+
+            if (Session["tasktype"] != null)
+            {
+
+                if (Session["tasktype"].ToString() == "DailyTask")
+                {
+
+                    if (user.UserRole == "FrontEndEmployee")
+                    {
+
+                        <form action="OasisTask" method="post">
+                            <div>
+                                @{
+
+                                    String[] FrontEndEmployee;
+                                    FrontEndEmployee = new string[4];
+
+                                    FrontEndEmployee[0] = "FLOORS,WALLS,COUNTER";
+                                    FrontEndEmployee[1] = "TAPS SANITIZED,GRID CLEAN";
+                                    FrontEndEmployee[2] = "FRIDGE CLEAN & ONTOP";
+                                    FrontEndEmployee[3] = "ANY SIGN OF PESTS";
+
+
+
+                                    for (int i = 0; i < FrontEndEmployee.Count(); i++)
+                                    {
+                                        <ul style="list-style-type: none">
+
+                                            <li>
+
+
+                                                <input type="radio" name="NewTask" value="@FrontEndEmployee[i]" /> @FrontEndEmployee[i]
+
+                                                <div>
+                                                </div>
+
+
+                                            </li>
+                                        </ul>
+                                    }
+
+
+
+
+
+                                }
+
+                                <button type="submit" style="width:80px" class="btn btn-block btn-secondary btn-lg">Start</button>
+                                <br />
+                                <a style="width:80px" class="btn btn-danger btn-sm" href="~/Tasks/TaskColobaration">close</a>
+                            </div>
+
+                        </form>
+
+                    }
+                    else if (user.UserRole == "StorageAreaEmployee")
+                    {
+
+                        <form action="OasisTask" method="post">
+                            <div>
+                                @{
+
+                                    String[] StorageAreaEmployee;
+                                    StorageAreaEmployee = new string[3];
+
+                                    StorageAreaEmployee[0] = "PACKAGING STORED OF FLOOR";
+                                    StorageAreaEmployee[1] = "PEST SIGNS";
+                                    StorageAreaEmployee[2] = "WALLS FLOOR CEKING CLEAN";
+
+
+
+                                    for (int i = 0; i < StorageAreaEmployee.Count(); i++)
+                                    {
+                                        <ul style="list-style-type: none">
+
+                                            <li>
+
+
+                                                <input type="radio" name="NewTask" value="@StorageAreaEmployee[i]" /> @StorageAreaEmployee[i]
+
+                                                <div>
+                                                </div>
+
+
+                                            </li>
+                                        </ul>
+                                    }
+
+
+
+
+
+                                }
+
+                                <button type="submit" style="width:80px" class="btn btn-block btn-secondary btn-lg">Start</button>
+                                <br />
+                                <a style="width:80px" class="btn btn-danger btn-sm" href="~/Tasks/TaskColobaration">close</a>
+                            </div>
+
+                        </form>
+
+
+                    }
+                    else if (user.UserRole == "ProccessAreaEmployee")
+                    {
+
+                        <form action="OasisTask" method="post">
+                            <div>
+                                @{
+
+                                    String[] ProccessAreaEmployee;
+                                    ProccessAreaEmployee = new string[8];
+
+                                    ProccessAreaEmployee[0] = "WASHBASIN IN THE PROCCESS AREA";
+                                    ProccessAreaEmployee[1] = "ANTI-BACTERIA SOAP PRESENT AND FULL";
+                                    ProccessAreaEmployee[2] = "TOILET CLEAN AND DUST FREE";
+                                    ProccessAreaEmployee[3] = "FLOORS,WALLS AND CEILING";
+                                    ProccessAreaEmployee[3] = "STORAGE TANKS CLEAN";
+                                    ProccessAreaEmployee[3] = "TAPS AND GRID CLEAN";
+                                    ProccessAreaEmployee[3] = "PIPE WORK CLEAN";
+                                    ProccessAreaEmployee[3] = "LEAKS";
+                                    ProccessAreaEmployee[3] = "EQUIPMENT CLEAN AND IN CORRECT PLACE";
+
+
+
+                                    for (int i = 0; i < ProccessAreaEmployee.Count(); i++)
+                                    {
+                                        <ul style="list-style-type: none">
+
+                                            <li>
+
+
+                                                <input type="radio" name="NewTask" value="@ProccessAreaEmployee[i]" /> @ProccessAreaEmployee[i]
+
+                                                <div>
+                                                </div>
+
+
+                                            </li>
+                                        </ul>
+                                    }
+
+
+
+
+
+                                }
+
+                                <button type="submit" style="width:80px" class="btn btn-block btn-secondary btn-lg">Start</button>
+                                <br />
+                                <a style="width:80px" class="btn btn-danger btn-sm" href="~/Tasks/TaskColobaration">close</a>
+                            </div>
+
+                        </form>
+
+
+
+
+                    }
+
+
+                }
+
+            }
+            else
+            {
+
+
+                using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+
+
+                    <div class="form-horizontal">
+                        <h4>Tasks</h4>
+                        <hr />
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Taskdetail, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Taskdetail, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Taskdetail, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+
+            }
+
+
+
+        }
+
+
+
+    }
+
+
+}
+
+
+
+
+

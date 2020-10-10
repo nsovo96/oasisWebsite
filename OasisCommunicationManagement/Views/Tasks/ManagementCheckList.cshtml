@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewBag.Title = "ManagementCheckList";
+    Layout = "~/Views/Shared/" + @Session["addtoLayout"];
+}
+
+<h4 style=" background-color:Highlight">Check List A</h4>
+
+
+<a class="fc-button primary" href="~/Tasks/GetCheckList">Goto CheckList View</a>
+
+<form action="ManagementCheckListB" method="post">
+
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+
+                <tr>
+
+                    <th>
+                        TDs_clean
+                    </th>
+                    <th>
+                        TDs_Main
+                    </th>
+              
+           
+                    <th>
+                        _1_PF_10_Micron
+                    </th>
+                    <th>
+                        _2_PF_5_Micron
+                    </th>
+                    <th>
+                        _3_Sand_Filter
+
+                    </th>
+
+                    <th>
+                        _4_Softner
+                    </th>
+
+                    <th>
+                        _5_1_Micron_Preasure
+                    </th>
+
+                    <th>
+                        _6_Membrane_Preasure
+                    </th>
+
+                    <th>
+                        _7_Flow_Rate_RAW
+                    </th>
+                    
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="number" name="TDs_clean" placeholder="enter TDs clean" style="width: 100px" />
+
+                    </td>
+                    <td>
+                        <input type="number" name="TDs_Main" placeholder="TDs_Main" style="width: 100px" />
+
+                    </td>
+
+
+                    <td>
+                        <input type="number" name="_1_PF_10_Micron" placeholder="_1_PF_10_Micron" style="width: 100px" />
+
+                    </td>
+
+                    <td>
+                        <input type="number" name="_2_PF_5_Micron" placeholder="_2_PF_5_Micron" style="width: 100px" />
+
+                    </td>
+
+                    <td>
+                        <input type="number" name="_3_Sand_Filter" placeholder="_3_Sand_Filter" style="width: 100px" />
+
+                    </td>
+                    <td>
+                        <input type="number" name="_4_Softner" placeholder="_4_Softner" style="width: 100px" />
+
+                    </td>
+
+                    <td>
+                        <input type="number" name="_5_1_Micron_Preasure" placeholder="_5_1_Micron_Preasure" style="width: 100px" />
+
+                    </td>
+
+                    <td>
+                        <input type="number" name="_6_Membrane_Preasure" placeholder="_6_Membrane_Preasure" style="width: 100px" />
+
+                    </td>
+
+                    <td>
+                        <input type="number" name="_7_Flow_Rate_RAW" placeholder="_7_Flow_Rate_RAW" style="width: 100px" />
+
+                    </td>
+
+                    <td>
+                        <input type="submit" name="Log" value="Log" style=" width: 60px " />
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</form>
+
+

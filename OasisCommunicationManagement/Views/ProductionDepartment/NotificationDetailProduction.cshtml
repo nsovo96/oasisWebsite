@@ -1,0 +1,145 @@
+﻿@model OasisCommunicationManagement.Models.notificationModel
+
+
+@using OasisCommunicationManagement.Models;
+@using System.Configuration;
+@using System.Data;
+@using System.Data.SqlClient;
+
+@{
+    ViewBag.Title = "NotificationDetailProduction";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+<h2>NotificationDetailProduction</h2>
+
+<div class="container">
+
+    <hr>
+    <div class="row">
+
+        <div class="col-sm-9 col-md-10">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#home" data-toggle="tab">
+                        <span class="glyphicon glyphicon-inbox">
+                        </span>Notification
+                    </a>
+                </li>
+            </ul>
+            <!-- Tab nes -->
+
+
+
+            <div class="tab-content">
+                <div id="home">
+                    <div class="list-group">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>from</th>
+                                    <th>Role</th>
+                                    <th>Notification</th>
+                                    <th>Sent</th>
+                                    <th>Send a Message</th>
+                                    <th>Actions</th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                @{
+
+                                    {
+                                                                <tr>
+
+                                                                    @{
+
+
+
+
+
+                                                                        {
+
+                                                                           
+                                                                            {
+                                                                               
+
+
+                                                                                {
+                                                                                    
+
+                                                                                    <td>@Model.Notification</td>
+                                                                                    <td>@Model.datesent</td>
+                                                                                    <td>
+                                                                                        <i class="fas fa-edit">
+
+
+                                                                                        </i>
+                                                                                    </td>
+
+                                                                                    <td>
+                                                     
+                                                                                        }
+
+                                                                                        <a class="btn btn-block bg-gradient-secondary" href="../ProductionDepartment">Close</a>
+                                                                                        <a class="btn btn-block btn-danger btn-sm" href="@Url.Action("DeleteTask","ProductionDepartment")">
+                                                                                            Delete
+                                                                                        </a>
+                                                                                        <a class="btn btn-block bg-gradient-primary" href="@Url.Action("Task","ProductionDepartment", new { taskID = Convert.ToInt32(Model.Fk_TaskID) })">Start a Task</a>
+
+                                                                                    </td>
+
+                                                                                }
+
+
+                                                                            }
+
+
+
+
+
+
+
+
+                                                                        }
+
+
+
+
+                                                                    }
+
+
+
+
+                                                                </tr>
+                                    }
+                                }
+
+
+
+
+
+                            </tbody>
+
+                        </table>
+
+
+
+
+
+                    </div>
+                </div>
+
+                <div class="tab-pane fade in" id="messages">
+                    ...
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>

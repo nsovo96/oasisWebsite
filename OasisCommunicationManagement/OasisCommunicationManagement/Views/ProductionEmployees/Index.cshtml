@@ -1,0 +1,68 @@
+﻿@model IEnumerable<OasisCommunicationManagement.Models.notificationModel>
+
+@{
+    ViewBag.Title = "just";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+@using OasisCommunicationManagement.Models;
+@using System.Configuration;
+@using System.Data;
+@using System.Data.SqlClient;
+
+
+
+<div class="container">
+
+    <hr>
+    <div class="row">
+
+        <div class="col-sm-9 col-md-10">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#home" data-toggle="tab">
+                        <span class="glyphicon glyphicon-inbox">
+                        </span>Notification center
+                    </a>
+                </li>
+            </ul>
+            <!-- Tab nes -->
+
+
+
+            <div class="tab-content">
+                <div id="home">
+                    <div class="list-group">
+
+
+                        @foreach (var item in Model)
+                        {
+
+                            <a href="@Url.Action("NotificationDetail", "ProductionEmployees", new { NotificationID =item.id })" class="list-group-item">
+
+                                <span class="glyphicon glyphicon-star-empty"></span><span class="name" style="min-width: 120px;
+                                             display: inline-block;"></span> <span class="">@item.Notification</span>
+                                            <span class="text-muted" style="font-size: 11px;"></span> <span class="badge">Select to View Task Progress      @item.datesent    </span> <span class="pull-right">
+
+                                            </span>
+                                        </a>
+
+
+                                    }
+                    </div>
+                </div>
+
+                <div class="tab-pane fade in" id="messages">
+                    ...
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+

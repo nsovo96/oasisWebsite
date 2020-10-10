@@ -1,0 +1,95 @@
+﻿@model IEnumerable<DataAccessLayer.Models.Notifications>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/" + @Session["addtoLayout"];
+}
+
+
+@{
+    if (Session["UserRole"].ToString() == "ProccessMaintananceEmployee")
+    {
+
+
+
+        <table class="table">
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Notification)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.datesent)
+                </th>
+
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Notification)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.datesent)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Details", "ViewNotification", new { id = item.id }) |
+                        @Html.ActionLink("View CheckList data", "GetCheckList","Tasks") |
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+
+
+    }
+    else
+    {
+
+        <table class="table">
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Notification)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.datesent)
+                </th>
+
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Notification)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.datesent)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Details", "ViewNotification", new { id = item.id }) |
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+
+
+    }
+}
+
+
+

@@ -1,0 +1,357 @@
+﻿@model IEnumerable<DataAccessLayer.Models.ManagementCheckList>
+
+@{
+    ViewBag.Title = "GetCheckList";
+    Layout = "~/Views/Shared/" + @Session["addtoLayout"];
+
+    int counter = 1;
+}
+
+
+
+@{
+    if (Session["UserRole"].ToString() == "ProccessMaintananceEmployee")
+    {
+
+
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            no
+                        </th>
+                        <th>
+                            date
+                        </th>
+
+                        <th>
+                            TDs_clean
+                        </th>
+                        <th>
+                            TDs_Main
+                        </th>
+                        <th>
+                            Ozone
+                        </th>
+                        <th>
+                            Silcone_Crystal_Color
+                        </th>
+                        <th>
+                            Mun_Tank_level
+                        </th>
+                        <th>
+                            Clean_tank_level
+                        </th>
+                        <th>
+                            _1_PF_10_Micron
+                        </th>
+                        <th>
+                            _2_PF_5_Micron
+                        </th>
+                        <th>
+                            _3_Sand_Filter
+
+                        </th>
+
+                        <th>
+                            _4_Softner
+                        </th>
+
+                        <th>
+                            _5_1_Micron_Preasure
+                        </th>
+
+                        <th>
+                            _6_Membrane_Preasure
+                        </th>
+
+                        <th>
+                            _7_Flow_Rate_RAW
+                        </th>
+                        <th>
+                            _8_Flow_Rate_Clean
+                        </th>
+                        <th>
+                            _9_Pump_Functional
+                        </th>
+                        <th>
+                            Conductive
+                        </th>
+                        <th>
+                            Clean_Water_Meter_Reading
+
+                        </th>
+                        <th>
+                            Litres_Purified_Since
+
+                        </th>
+                        <th>
+                            Action
+
+                        </th>
+
+                    </tr>
+                </thead>
+
+                @{
+                    foreach (var item in Model)
+                    {
+
+                        <tr>
+
+
+                            <td>@counter</td>
+                            <td>@item.date</td>
+                            <td>
+                                @item.TDs_clean ppt
+                            </td>
+                            <td>
+                                @item.TDs_Main ppt
+                            </td>
+                            <td>
+                                @item.Ozone
+                            </td>
+                            <td>
+                                @item.Silcone_Crystal_Color
+                            </td>
+                            <td>
+                                @item.Mun_Tank_level %
+                            </td>
+                            <td>
+                                @item.Clean_tank_level %
+                            </td>
+                            <td>
+                                @item._1_PF_10_Micron psi
+                            </td>
+                            <td>
+                                @item._2_PF_5_Micron psi
+                            </td>
+                            <td>
+                                @item._3_Sand_Filter psi
+
+                            </td>
+                            <td>
+                                @item._4_Softner psi
+                            </td>
+
+                            <td>
+                                @item._5_1_Micron_Preasure psi
+                            </td>
+
+                            <td>
+                                @item._6_Membrane_Preasure psi
+                            </td>
+
+                            <td>
+                                @item._7_Flow_Rate_RAW liters
+                            </td>
+                            <td>
+                                @item._8_Flow_Rate_Clean
+                            </td>
+                            <td>
+                                @item._9_Pump_Functional
+                            </td>
+                            <td>
+                                @item.Conductive l/psi
+                            </td>
+                            <td>
+                                @item.Clean_Water_Meter_Reading m^3
+
+                            </td>
+                            <td>
+                                @item.Litres_Purified_Since_Previous_Reading liters
+
+                            </td>
+                        </tr>
+                        counter += 1;
+
+                    }
+
+                }
+
+            </table>
+        </div>
+
+
+    }
+    else if (Session["UserRole"].ToString() == "Manager")
+    {
+
+
+
+        <a class="fc-button primary" href="~/Tasks/ManagementCheckList">Fill in a check list</a>
+
+
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            no
+                        </th>
+                        <th>
+                            date
+                        </th>
+
+                        <th>
+                            TDs_clean
+                        </th>
+                        <th>
+                            TDs_Main
+                        </th>
+                        <th>
+                            Ozone
+                        </th>
+                        <th>
+                            Silcone_Crystal_Color
+                        </th>
+                        <th>
+                            Mun_Tank_level
+                        </th>
+                        <th>
+                            Clean_tank_level
+                        </th>
+                        <th>
+                            _1_PF_10_Micron
+                        </th>
+                        <th>
+                            _2_PF_5_Micron
+                        </th>
+                        <th>
+                            _3_Sand_Filter
+
+                        </th>
+
+                        <th>
+                            _4_Softner
+                        </th>
+
+                        <th>
+                            _5_1_Micron_Preasure
+                        </th>
+
+                        <th>
+                            _6_Membrane_Preasure
+                        </th>
+
+                        <th>
+                            _7_Flow_Rate_RAW
+                        </th>
+                        <th>
+                            _8_Flow_Rate_Clean
+                        </th>
+                        <th>
+                            _9_Pump_Functional
+                        </th>
+                        <th>
+                            Conductive
+                        </th>
+                        <th>
+                            Clean_Water_Meter_Reading
+
+                        </th>
+                        <th>
+                            Litres_Purified_Since
+
+                        </th>
+                        <th>
+                            Action
+
+                        </th>
+
+                    </tr>
+                </thead>
+
+                @{
+                    foreach (var item in Model)
+                    {
+
+                        <tr>
+
+
+                            <td>@counter</td>
+                            <td>@item.date</td>
+                            <td>
+                                @item.TDs_clean ppt
+                            </td>
+                            <td>
+                                @item.TDs_Main ppt
+                            </td>
+                            <td>
+                                @item.Ozone
+                            </td>
+                            <td>
+                                @item.Silcone_Crystal_Color
+                            </td>
+                            <td>
+                                @item.Mun_Tank_level %
+                            </td>
+                            <td>
+                                @item.Clean_tank_level %
+                            </td>
+                            <td>
+                                @item._1_PF_10_Micron psi
+                            </td>
+                            <td>
+                                @item._2_PF_5_Micron psi
+                            </td>
+                            <td>
+                                @item._3_Sand_Filter psi
+
+                            </td>
+                            <td>
+                                @item._4_Softner psi
+                            </td>
+
+                            <td>
+                                @item._5_1_Micron_Preasure psi
+                            </td>
+
+                            <td>
+                                @item._6_Membrane_Preasure psi
+                            </td>
+
+                            <td>
+                                @item._7_Flow_Rate_RAW liters
+                            </td>
+                            <td>
+                                @item._8_Flow_Rate_Clean
+                            </td>
+                            <td>
+                                @item._9_Pump_Functional
+                            </td>
+                            <td>
+                                @item.Conductive l/psi
+                            </td>
+                            <td>
+                                @item.Clean_Water_Meter_Reading m^3
+
+                            </td>
+                            <td>
+                                @item.Litres_Purified_Since_Previous_Reading liters
+
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "EditCheckList", new { ChecklistID = item.Id })
+                                @Html.ActionLink("Delete", "Delete", new { ChecklistID = item.Id })
+
+                            </td>
+                        </tr>
+                        counter += 1;
+
+                    }
+
+
+                }
+
+
+
+            </table>
+        </div>
+
+
+    }
+}
+
+
