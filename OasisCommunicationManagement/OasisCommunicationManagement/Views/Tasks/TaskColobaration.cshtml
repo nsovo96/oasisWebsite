@@ -1,0 +1,125 @@
+﻿@model IEnumerable<DataAccessLayer.Models.Tasks>
+
+@{
+    ViewBag.Title = "TaskColobaration";
+    Layout = "~/Views/Shared/" + @Session["addtoLayout"];
+}
+
+
+<h4>
+
+    @Html.ActionLink("Goto my task", "GetTask")
+
+</h4>
+
+@{
+    int counter = 0;
+
+    List<DataAccessLayer.Models.Users> user = (List<DataAccessLayer.Models.Users>)Session["userdetails"];
+
+
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Task owner</th>
+                    <th>Job position</th>
+                    <th>Task Details</th>
+                    <th>Task status</th>
+                    <th>Due date</th>
+                    <th>Collab</th>
+
+
+                </tr>
+            </thead>
+
+            <tbody>
+
+                
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        @{
+
+
+
+                            foreach(var u in user)
+                            {
+
+
+
+
+                                if ((item.Fk_EmployeeID != Convert.ToInt32(Session["userId"])  && (u.id==item.Fk_EmployeeID)))
+                                {
+
+
+                                    Session["taskDetail"] = item.Taskdetail;
+                                    Session["taskStatus"] = item.TaskStatus;
+                                    Session["dueDate"] = item.DueDate;
+                    <tr>
+                                
+
+                        <td>
+                            @u.FullNames;
+                        </td>
+                        <td>
+                            @u.UserRole;
+
+                        </td>
+                        <td> @item.Taskdetail</td>
+                        <td>@item.TaskStatus</td>
+                        <td>  @item.DueDate </td>
+                        <td>
+
+                            @Html.ActionLink("Collab", "Colaboration", new { TaskId = item.id })
+                        </td>
+
+
+                    </tr>
+
+
+                                    }
+                                }
+
+                            }
+
+
+
+                        </tr>
+                    }
+
+            </tbody>
+        </table>
+    </div>
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

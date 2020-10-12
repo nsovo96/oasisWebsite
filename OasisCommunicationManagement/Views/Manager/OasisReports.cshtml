@@ -1,0 +1,103 @@
+﻿@model OasisCommunicationManagement.Models.UserModel
+
+@{
+    ViewBag.Title = "OasisReports";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<h2>OasisReports</h2>
+
+<div id="container" style="min-width:310px;height:400px;max-width:600px;margin:0 auto;">
+
+</div>
+<p class="highcharts-description">
+</p>
+
+<script>
+
+
+
+    $(document).ready(function () {
+
+        $.getJSON("../Manager/GetData", function (data) {
+
+            var Quantity = []
+            var price = []
+            var name = []
+
+            for (var i = 0; i < data.length; i++) {
+                Quantity.push(data[i].Quantity);
+                price.push(data[i].CurrentPrice);
+                name.push(data[i].ProductName);
+
+            }
+                Highcharts.chart('container', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: '% of Available Products'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    accessibility: {
+                        point: {
+                            valueSuffix: '%'
+                        }
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                            }
+                        }
+                    },
+           
+
+                    series: [{
+
+                     
+                        name: 'Brands',
+                        colorByPoint: true,
+                        data: [ {
+                            name: data[0].ProductName,
+                            y: data[0].Quantity
+                            
+                            }, {
+                                name: data[2].ProductName
+
+                                ,
+                                y: data[2].Quantity
+                            }, {
+                                name: data[1].ProductName
+                                
+                                ,
+                                y: data[1].Quantity,
+                                x: data[1].price,
+
+                        }]
+                    }]
+                });
+            });
+ 
+
+    });
+
+
+
+
+</script>
+
+
+<div>
+    @Html.ActionLink("Notify Product Manager", "ProductReports")
+</div>

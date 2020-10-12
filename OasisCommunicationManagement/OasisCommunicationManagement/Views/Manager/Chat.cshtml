@@ -1,0 +1,91 @@
+﻿@model IEnumerable<OasisCommunicationManagement.Models.MessagesModel>
+@{
+    ViewBag.Title = "Chat";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+<link href="~/dist/css/imbox.css" rel="stylesheet" />
+<div class="container">
+
+
+    <div class="col-md-6 col-lg-7 col-md-offset-3">
+        <div class="panel panel-default chat-widget">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-comments"></i> @Session["SendName"]</h3>
+            </div>
+
+
+            @foreach (var item in Model)
+            {
+
+                <div class="panel-body">
+
+
+
+                    @if (item.SenderID != Convert.ToInt32(Session["senderId"]))
+                    {
+                        <div class="message message-right">
+                            <div class="avatar">
+                                <img class="img-circle avatar" alt="chat avatar" src="atar2.png">
+                            </div>
+                            <div class="message-text-wrapper">
+                                <div class="message-text">
+                                    @item.messages
+                                </div>
+                            </div>
+                            <p class="time-stamp"><i class="fa fa-check"></i>@item.DateSent</p>
+                        </div>
+
+                    }
+
+                    else
+                    {
+                        <div class="message">
+                            <div class="avatar">
+                                <img class="img-circle avatar" alt="chat avatar" src="https://bootdey.com/img/Content/avatar/avatar1.png">
+                            </div>
+                            <div class="message-text-wrapper">
+                                <div class="message-text">
+                                    @item.messages
+                                </div>
+                            </div>
+                            <p class="time-stamp"><i class="fa fa-check"></i>kanjh  mxczmxbccmzxbcjb @item.DateSent</p>
+                        </div>
+
+                    }
+
+
+
+                </div>
+
+
+            }
+
+            <div class="panel-footer">
+                <form method="post" action="SendMessage">
+
+                    <div class="input-group">
+                        <input style="width : 150px;height:55px;margin:0 " ;type="text" name="Message" placeholder="Press Enter" class="form-control primary">
+                        <br />
+                        <div>
+                            <span class="input-group-btn">
+                                <button style="width : 100px;height:55px;margin:0;" class="btn btn-primary" type="submit" name="Send" value="send message">send </button>
+                            </span>
+                        </div>
+                        <br />
+                        <hr />
+                        <div>
+                            <span class="input-group-btn">
+                                <a style="width : 100px;height:55px;margin:0;" class="btn btn-primary" href="../Manager/inbox">Back </a>
+                            </span>
+
+                        </div>
+
+
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>

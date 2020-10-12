@@ -1,0 +1,185 @@
+﻿@model DataAccessLayer.Models.ManagementCheckList
+
+@{
+    ViewBag.Title = "EditCheckList";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+<h2>EditCheckList</h2>
+
+<form action="EditCheckList" method="post">
+
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+
+                <tr>
+
+                    <th>
+                        TDs_clean
+                    </th>
+                    <th>
+                        TDs_Main
+                    </th>
+                    <th>
+                        Ozone
+                    </th>
+                    <th>
+                        Silcone_Crystal_Color
+                    </th>
+                    <th>
+                        Mun_Tank_level
+                    </th>
+                    <th>
+                        Clean_tank_level
+                    </th>
+                    <th>
+                        _1_PF_10_Micron
+                    </th>
+                    <th>
+                        _2_PF_5_Micron
+                    </th>
+                    <th>
+                        _3_Sand_Filter
+
+                    </th>
+
+                    <th>
+                        _4_Softner
+                    </th>
+
+                    <th>
+                        _5_1_Micron_Preasure
+                    </th>
+
+                    <th>
+                        _6_Membrane_Preasure
+                    </th>
+
+                    <th>
+                        _7_Flow_Rate_RAW
+                    </th>
+                    <th>
+                        _8_Flow_Rate_Clean
+                    </th>
+                    <th>
+                        _9_Pump_Functional
+                    </th>
+                    <th>
+                        Conductive
+                    </th>
+                    <th>
+                        Clean_Water_Meter_Reading
+
+                    </th>
+                    <th>
+                        Litres_Purified_Since
+
+                    </th>
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="number" name="TDs_clean" placeholder="enter TDs clean" style="width: 100px" />
+
+                    </td>
+                    <td>
+                        <input type="number" name="TDs_Main" placeholder="TDs_Main" style="width: 100px" />
+
+                    </td>
+
+                    <td>
+                        <input type="text" name="Ozone" placeholder="Ozone" style="width: 100px" />
+
+                    </td>
+
+                    <td>
+                        <input type="text" name="Silcone_Crystal_Color" placeholder="Silcone_Crystal_Color" style="width: 100px" />
+
+                    </td>
+
+                    <td>
+                        <input type="number" name="Mun_Tank_level" placeholder="Mun_Tank_level" style="width: 100px" />
+
+                    </td>
+
+                    <td>
+                        <input type="number" name="Clean_tank_level" placeholder="Clean_tank_level" style="width: 100px" />
+
+                    </td>
+
+                    <td>
+                        <input type="number" name="_1_PF_10_Micron" placeholder="_1_PF_10_Micron" style="width: 100px" />
+
+                    </td>
+
+                    <td>
+                        <input type="number" name="_2_PF_5_Micron" placeholder="_2_PF_5_Micron" style="width: 100px" />
+
+                    </td>
+
+                    <td>
+                        <input type="number" name="_3_Sand_Filter" placeholder="_3_Sand_Filter" style="width: 100px" />
+
+                    </td>
+                    <td>
+                        <input type="number" name="_4_Softner" placeholder="_4_Softner" style="width: 100px" />
+
+                    </td>
+
+                    <td>
+                        <input type="number" name="_5_1_Micron_Preasure" placeholder="_5_1_Micron_Preasure" style="width: 100px" />
+
+                    </td>
+
+                    <td>
+                        <input type="number" name="_6_Membrane_Preasure" placeholder="_6_Membrane_Preasure" style="width: 100px" />
+
+                    </td>
+
+                    <td>
+                        <input type="number" name="_7_Flow_Rate_RAW" placeholder="_7_Flow_Rate_RAW" style="width: 100px" />
+
+                    </td>
+                    <td>
+                        <input type="text" name="_8_Flow_Rate_Clean" placeholder="_8_Flow_Rate_Clean" style="width: 100px" />
+
+                    </td>
+                    <td>
+                        <input type="text" name="_9_Pump_Functional" placeholder="_9_Pump_Functional" style="width: 100px" />
+
+                    </td>
+                    <td>
+                        <input type="number" name="Conductive" placeholder="Conductive" style="width: 100px" />
+
+                    </td>
+                    <td>
+                        <input type="number" name="Clean_Water_Meter_Reading" placeholder="Clean_Water_Meter_Reading" style="width: 100px" />
+
+                    </td>
+                    <td>
+                        <input type="number" name="Litres_Purified" placeholder="Litres_Purified_Since " style=" width: 100px " />
+
+                    </td>
+
+                    <td>
+                        <input type="submit" name="Log" value="Log" style=" width: 60px " />
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</form>
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

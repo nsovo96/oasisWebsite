@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Task";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+<h2>Task</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <!-- general information panel -->
+        <div class="panel panel-default">
+            <h6>enter task detai</h6>
+            <div class="panel-body">
+                <div class="space-child-divs">
+
+                 
+
+                    <form method="post" action="Task">
+
+                        <div class="input-group">
+                            <input style="width : 150px;height:55px;margin:0 " ;type="text" name="TaskDetail" placeholder=" Assign" class="form-control primary">
+                            <br />
+                            <div>
+                                <span class="input-group-btn">
+                                    <button style="width : 100px;height:55px;margin:0;" class="btn btn-primary" type="submit" name="Send" value="send message">Assign </button>
+                                </span>
+                            </div>
+                            <br />
+                            <hr />
+                            <div>
+                                <span class="input-group-btn">
+                                    <a style="width : 100px;height:55px;margin:0;" class="btn btn-primary" href="../Manager/inbox">Back </a>
+                                </span>
+
+                            </div>
+
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>

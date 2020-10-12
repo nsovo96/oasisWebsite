@@ -1,0 +1,82 @@
+﻿@model DataAccessLayer.Models.Tasks
+
+@{
+    ViewBag.Title = "AddNotification";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+<h2>AddNotification</h2>
+
+<div>
+    <h4>Tasks</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fk_EmployeeID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fk_EmployeeID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateAssigned)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateAssigned)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateFinished)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateFinished)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DueDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DueDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TaskStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaskStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Taskdetail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Taskdetail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TaskType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaskType)
+        </dd>
+
+    </dl>
+</div>
+<form action="AddNotification" method="post">
+    <div>
+
+        <textarea class="form-control" name="Notification" id="Notification" rows="3" placeholder="Enter ..."></textarea>
+        <br />
+        <button type="submit" style="width:80px" class="btn btn-block btn-secondary btn-lg">Notify</button>
+        <br />
+        <a style="width:80px" class="btn btn-danger btn-sm" href="~/Tasks/TaskColobaration">close</a>
+    </div>
+
+</form>

@@ -1,0 +1,203 @@
+﻿@model OasisCommunicationManagement.Models.TaskModel
+
+@{
+    ViewBag.Title = "taskProgress";
+    Layout = "~/Views/Shared/_HomePageLayout.cshtml";
+}
+
+@using OasisCommunicationManagement.Models;
+@using System.Configuration;
+@using System.Data;
+@using System.Data.SqlClient;
+
+<div class="container">
+
+    <hr>
+    <div class="row">
+
+        <div class="col-sm-9 col-md-10">
+            <!-- Nav tabs -->
+
+
+
+
+            <div class="tab-content">
+                <div id="home">
+                    <div class="list-group">
+
+
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Task details</h3>
+
+                                        <div class="card-tools">
+
+                                        </div>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body table-responsive p-0" ;">
+                                        <form method="Post" action="UpdateTask">
+                                            <table class="table table-head-fixed text-nowrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Task Details</th>
+                                                        <th>Date Assigned</th>
+                                                        <th>Due date</th>
+                                                        <th>Status</th>
+
+                                                        <th>Action</th>
+
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @{
+                                                        Session["taskID"] = Model.id;
+
+                                                        if (Model.TaskStatus == "Accepted")
+                                                        {
+
+                                                            <tr>
+                                                                <td>@Model.id</td>
+                                                                <td>@Model.Taskdetail</td>
+                                                                <td>@Model.dateAssigned</td>
+                                                                <td>@Model.DueDate</td>
+                                                                <td><span class="tag tag-success">@Model.TaskStatus</span></td>
+                                                                <td> Task not intitialized <a href="@Url.Action("StartTask", "ProductionEmployees", new { TaskID =Model.id })">Start task</a></td>
+                                                            </tr>
+                                                        }
+                                                        else
+                                                        {
+                                                            if (Convert.ToInt32(Session["id"]) == Model.Fk_EmployeeID)
+                                                            {
+                                                                <tr>
+                                                                    <td>@Model.id</td>
+                                                                    <td>@Model.Taskdetail</td>
+                                                                    <td>@Model.dateAssigned</td>
+                                                                    <td>@Model.DueDate</td>
+
+                                                                    <td><span class="tag tag-success">@Model.TaskStatus</span></td>
+
+
+
+                                                                    <td><input type="text" name="NewTask" id="NewTask" placeholder="Enter new task progress" class="form-control"> Task started <button type="submit"> update task</button></td>
+                                                                </tr>
+                                                            }
+                                                            else
+                                                            {
+                                                                <tr>
+                                                                    <td>@Model.id</td>
+                                                                    <td>@Model.Taskdetail</td>
+                                                                    <td>@Model.dateAssigned</td>
+                                                                    <td>@Model.DueDate</td>
+                                                                    <td><span class="tag tag-success">@Model.TaskStatus</span></td>
+                                                                    <td>Task has  been >@Model.Taskdetail you cannot make an action, comment for updates </td>
+                                                                </tr>
+
+                                                            }
+
+
+
+                                                        }
+
+
+                                                    }
+
+
+
+
+
+                                                </tbody>
+
+
+
+                                            </table>
+                                        </form>
+
+                                        <hr />
+                                        <form action="Comments" method="post">
+                                            <div>
+
+                                                <textarea class="form-control" name="Comment" id="Comment" rows="3" placeholder="Enter ..."></textarea>
+                                                <br />
+                                                <button type="submit" style="width:80px" class="btn btn-block btn-secondary btn-lg">Comment</button>
+                                                <br />
+                                                <a style="width:80px" class="btn btn-danger btn-sm" href="../productionEmployees/index">close</a>
+                                            </div>
+
+                                        </form>
+                                    </div>
+
+                                    <br />
+                                    <hr />
+                                    <p>Comments</p>
+
+
+                                    @{
+
+
+                                        string OasisConnectionManager;
+                                        SqlConnection OasisConnection;
+
+                                        OasisConnectionManager = ConfigurationManager.ConnectionStrings["OasisConnectionString"].ConnectionString;
+
+                                        OasisConnection = new SqlConnection(OasisConnectionManager);
+
+                                        DataTable dataTable = new DataTable();
+                                        OasisConnection.Open();
+
+                                        var query = "select * from Comments where Fk_task_ID='" + Convert.ToInt32(Model.id) + "'";
+                                        SqlCommand SelectCommand = new SqlCommand(query, OasisConnection);
+
+                                        using (SqlDataReader rd = SelectCommand.ExecuteReader())
+                                        {
+
+
+                                            while (rd.Read())
+                                            {
+                                                <div class="timeline-item">
+                                                    <span class="time"><i class="fas fa-clock"></i>@rd["DateCommented"]</span>
+                                                    <h5 class="timeline-header">@rd["commenter"] </h5>
+                                                    <div class="timeline-body">
+                                                       @rd["comments"]
+                                                    </div>
+
+                                                </div>
+
+                                            
+
+                                        }
+                                    }
+
+                                    }
+
+                                    <!-- /.card-body -->
+                                    <br />
+
+                                    
+                                </div>
+                                <!-- /.card -->
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="tab-pane fade in" id="messages">
+                    ...
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+

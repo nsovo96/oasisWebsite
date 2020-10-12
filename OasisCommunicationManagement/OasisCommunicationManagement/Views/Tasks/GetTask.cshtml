@@ -1,0 +1,264 @@
+﻿@model IEnumerable<DataAccessLayer.Models.Tasks>
+
+@{
+    ViewBag.Title = "GetTask";
+    Layout = "~/Views/Shared/" + @Session["addtoLayout"];
+}
+
+@using System.Globalization;
+
+
+<h4 style="background-color:black">
+    @Html.ActionLink("Task Colobaration", "TaskColobaration")
+    <br />
+    <br />
+    @Html.ActionLink("Start a daily task", "NewTask", new { tasktype = "DailyTask" })
+
+
+</h4>
+
+@{
+    String[] FrontEndEmployee;
+    FrontEndEmployee = new string[4];
+
+    FrontEndEmployee[0] = "FLOORS,WALLS,COUNTER";
+    FrontEndEmployee[1] = "TAPS SANITIZED,GRID CLEAN";
+    FrontEndEmployee[2] = "FRIDGE CLEAN & ONTOP";
+    FrontEndEmployee[3] = "ANY SIGN OF PESTS";
+
+
+    String[] ProccessAreaEmployee;
+    ProccessAreaEmployee = new string[8];
+
+    ProccessAreaEmployee[0] = "WASHBASIN IN THE PROCCESS AREA";
+    ProccessAreaEmployee[1] = "ANTI-BACTERIA SOAP PRESENT AND FULL";
+    ProccessAreaEmployee[2] = "TOILET CLEAN AND DUST FREE";
+    ProccessAreaEmployee[3] = "FLOORS,WALLS AND CEILING";
+    ProccessAreaEmployee[3] = "STORAGE TANKS CLEAN";
+    ProccessAreaEmployee[3] = "TAPS AND GRID CLEAN";
+    ProccessAreaEmployee[3] = "PIPE WORK CLEAN";
+    ProccessAreaEmployee[3] = "LEAKS";
+    ProccessAreaEmployee[3] = "EQUIPMENT CLEAN AND IN CORRECT PLACE";
+
+
+    String[] StorageAreaEmployee;
+    StorageAreaEmployee = new string[3];
+
+    StorageAreaEmployee[0] = "PACKAGING STORED OF FLOOR";
+    StorageAreaEmployee[1] = "PEST SIGNS";
+    StorageAreaEmployee[2] = "WALLS FLOOR CEKING CLEAN";
+
+}
+
+
+
+<div>
+    <hr />
+    <h3 style="background-color:blue ">Morning  Task  </h3>
+</div>
+
+
+
+<div class="table-responsive">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Task Details</th>
+                <th>Task status</th>
+                <th>Due date</th>
+                <th>Update task</th>
+
+            </tr>
+        </thead>
+
+        @{
+            foreach (var item in Model)
+            {
+
+                string v = item.dateAssigned.ToString("tt", CultureInfo.InvariantCulture);
+
+                if (item.TaskType == "oasisTask")
+                {
+                    if (v == "AM")
+                    {
+
+                        if (item.Fk_EmployeeID == Convert.ToInt32(Session["userId"]))
+                        {
+
+                            <tr>
+                                <td>@item.Taskdetail</td>
+                                <td>@item.TaskStatus</td>
+                                <td>  @item.DueDate </td>
+
+                                <td>
+                                    @Html.ActionLink("Update status", "UpdateTask", new { TaskID = item.id })
+                                </td>
+
+                            </tr>
+                        }
+
+                    }
+
+
+                }
+
+
+
+            } }
+
+    </table>
+</div>
+
+
+
+
+
+<div>
+    <hr />
+    <h3 style="background-color: royalblue">Afternoon  Task  </h3>
+</div>
+
+
+
+<div class="table-responsive">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Task Details</th>
+                <th>Task status</th>
+                <th>Due date</th>
+                <th>Update task</th>
+
+            </tr>
+        </thead>
+
+        @{
+            foreach (var item in Model)
+            {
+
+                string v = item.dateAssigned.ToString("tt", CultureInfo.InvariantCulture);
+
+                if (item.TaskType == "oasisTask")
+                {
+                    if (v == "PM")
+                    {
+
+                        if (item.Fk_EmployeeID == Convert.ToInt32(Session["userId"]))
+                        {
+
+                            <tr>
+                                <td>@item.Taskdetail</td>
+                                <td>@item.TaskStatus</td>
+                                <td>  @item.DueDate </td>
+
+                                <td>
+
+                                    @Html.ActionLink("Update status", "UpdateTask", new { TaskID = item.id })
+                                </td>
+
+                            </tr>
+                        }
+
+                    }
+
+
+                }
+
+
+
+            } }
+
+    </table>
+</div>
+
+
+
+<div>
+    <hr />
+    <h3 style="background-color: darkslateblue">Assigned  Task  </h3>
+
+    <br />
+</div>
+
+
+<div class="table-responsive">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Task Details</th>
+                <th>Task status</th>
+                <th>Due date</th>
+                <th>Update task</th>
+
+            </tr>
+        </thead>
+
+        @{
+            foreach (var item in Model)
+            {
+
+                string v = item.dateAssigned.ToString("tt", CultureInfo.InvariantCulture);
+
+                if (item.TaskType != "oasisTask")
+                {
+                    
+
+                        if (item.Fk_EmployeeID == Convert.ToInt32(Session["userId"]))
+                        {
+
+                            <tr>
+                                <td>@item.Taskdetail</td>
+                                <td>@item.TaskStatus</td>
+                                <td>  @item.DueDate </td>
+
+                                <td>
+
+                                    @Html.ActionLink("Complete Task", "UpdateTask", new { TaskID = item.id })
+                                </td>
+
+                            </tr>
+                        }
+
+                    
+
+
+                }
+
+
+
+            } }
+
+    </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

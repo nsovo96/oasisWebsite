@@ -1,0 +1,157 @@
+﻿@model IEnumerable<DataAccessLayer.Models.Comments>
+
+@{
+    ViewBag.Title = "UpdateTask";
+    Layout = "~/Views/Shared/" + @Session["addtoLayout"];
+}
+
+<h2>UpdateTask</h2>
+
+
+@using DataAccessLayer.Models;
+@using BusinessLogic;
+
+
+
+@{
+    List<DataAccessLayer.Models.Users> user = (List<DataAccessLayer.Models.Users>)Session["userdetails"];
+
+    //get tasks
+    Task Tasks = new Task("Select");
+
+    List<Tasks> AllTasks = new List<Tasks>();
+
+    AllTasks = Tasks.GetTasks();
+
+
+
+    //get users
+
+    List<Users> userManager = new List<Users>();
+
+
+    UserAccounts AccountList = new UserAccounts("Select");
+
+    userManager = AccountList.Login();
+}
+<h2>Colaboration</h2>
+
+
+
+<div class="container">
+    <form action="UpdateTask" method="post">
+        details
+
+        @{
+
+
+
+            string Control = "False";
+
+            foreach (var t in AllTasks)
+            {
+
+                foreach (var u in userManager)
+                {
+
+
+
+                    int taskId = Convert.ToInt32(Session["taskID"]);
+
+
+
+
+                    if ((Control == "False") && (taskId == t.id))
+                    {
+                        Control = "True";
+
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Task details</th>
+                                    <th>Task status</th>
+                                    <th>Task due date</th>
+
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+
+
+                                <tr>
+                                    <td>
+                                        @t.Taskdetail
+
+                                    </td>
+                                    <td>
+                                        @t.TaskStatus
+                                    </td>
+                                    <td>
+
+                                        @t.DueDate
+                                    </td>
+                                    <td>
+                                        <div>
+
+                                            <textarea class="form-control" name="Comment" id="Comment" rows="3" placeholder="Enter ..."></textarea>
+                                            <br />
+                                            <button type="submit" style="width:80px" class="btn btn-block btn-secondary btn-lg">Comment</button>
+                                            <br />
+                                            <a style="width:80px" class="btn btn-danger btn-sm" href="~/Task/TaskColobaration">close</a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+
+
+
+
+                            </tbody>
+                        </table>
+                    }
+
+                    foreach (var item in Model)
+                    {
+
+                        if ((item.Fk_commentor_ID == u.id) && (item.Fk_task_ID == t.id))
+                        {
+                            <hr>
+                            <div class="row">
+
+                                <div class="col-sm-9 col-md-10">
+
+                                    <div class="timeline-item">
+                                        <span class="time"><i class="fas fa-clock"></i>@item.DateCommented</span>
+                                        <h5 class="timeline-header">@u.FullNames </h5>
+                                        <div class="timeline-body">
+                                            @item.comments
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            }
+        }
+
+    </form>
+        <form action="MyColaboration" method="post">
+            <div>
+
+                <textarea class="form-control" name="Comment" id="Comment" rows="3" placeholder="Enter ..."></textarea>
+                <br />
+                <button type="submit" style="width:80px" class="btn btn-block btn-secondary btn-lg">Comment</button>
+                <br />
+                <a style="width:80px" class="btn btn-danger btn-sm" href="~/Task/TaskColobaration">close</a>
+            </div>
+
+        </form>
+
+
+</div>
